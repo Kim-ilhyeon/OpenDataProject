@@ -22,4 +22,5 @@ public class AirVO {
 	private String no2Value;		// 이산화질소 농도
 	private String o3Value;			// 오존 농도
 	
+	
 }
