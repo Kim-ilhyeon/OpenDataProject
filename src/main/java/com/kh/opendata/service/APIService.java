@@ -7,8 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonArray;
@@ -17,8 +17,14 @@ import com.google.gson.JsonParser;
 import com.kh.opendata.model.vo.AirPollution;
 import com.kh.opendata.model.vo.AirVO;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Service
 public class APIService {
+
+	@Value("${opendataPreoject}")
+	
+	
 	private static final String SERVICE_KEY = "JppeOBq10JWncJXZH7dJfwnuKFmazs3GhTZDLKBp3Ljc8S4p4EyhptjHb2I4g3jLCVrl2s%2FCZNad35jsNDU84g%3D%3D";
 
 	/**
@@ -39,6 +45,19 @@ public class APIService {
 		URL requestUrl = new URL(url);
 		
 		HttpURLConnection urlConn = (HttpURLConnection)requestUrl.openConnection();
+		
+		/*
+		// * 통신 성공 여부 체크
+		if (urlConn.getResponseCode() == HttpServletResponse.SC_OK) {
+			// * 응답 데이터 읽어오기
+			BufferedReader buf = new BufferedReader(
+							new InputStreamReader(urlConn.getInputStream()));
+			
+			
+		} else {
+			buf = new BufferedReader(new InputStramReader(urlConn.getErrorStream()));
+		}
+		*/
 		
 		urlConn.setRequestMethod("GET");
 		
