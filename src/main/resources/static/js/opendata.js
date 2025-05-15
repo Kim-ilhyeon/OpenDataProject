@@ -1,7 +1,6 @@
 onload = () => {
 	// 아이디 속성이 btn1인 요소가 클릭되었을 때 (이벤트 핸들러)
 	const btn = document.getElementById("btn1");
-
 	// getAirPollution();
 	getAirPollutionV2();
 	//btn.onclick = function() {
@@ -18,6 +17,9 @@ onload = () => {
 const getAirPollutionV2 = async (page = 1) => {
 	// [GET] /airPollution/v2?location=지역정보&currPage=페이지번호
 
+	const tbody = document.querySelector("#table tbody");
+	tbody.innerHTML = "";
+	
 	const location = document.getElementById("location").value;
 
 	try {
@@ -114,6 +116,7 @@ const displayAirPollutionData = (data) => {
 	const list = data;
 	const tbody = document.querySelector("#table tbody");
 
+	/*
 	let element = "";
 	for (let i = 0; i < list.length; i++) {
 		element += '<tr>'
@@ -127,9 +130,59 @@ const displayAirPollutionData = (data) => {
 			+ '<td>' + list[i].o3Value + ' <b>ppm</b></td>'
 			+ '</tr>';
 	}
+	*/
+	let element = "";
 
-	tbody.innerHTML = element;
+
+	for (let i = 0; i < list.length; i++) {
+		const tr = document.createElement("tr");
+		const td1 = document.createElement("td");
+		const td2 = document.createElement("td");
+		const td3 = document.createElement("td");
+		const td4 = document.createElement("td");
+		const td5 = document.createElement("td");
+		const td6 = document.createElement("td");
+		const td7 = document.createElement("td");
+		const td8 = document.createElement("td");
+
+		const stationName = document.createTextNode(list[i].stationName);
+		const dataTime = document.createTextNode(list[i].dataTime);
+		const khaiValue = document.createTextNode(list[i].khaiValue);
+		const pm10Value = document.createTextNode(list[i].pm10Value);
+		const coValue = document.createTextNode(list[i].coValue);
+		const no2Value = document.createTextNode(list[i].no2Value);
+		const so2Value = document.createTextNode(list[i].so2Value);
+		const o3Value = document.createTextNode(list[i].o3Value);
+
+		td1.appendChild(stationName);
+		td2.appendChild(dataTime);
+		td3.appendChild(khaiValue);
+		td4.appendChild(pm10Value);
+		td5.appendChild(coValue);
+		td6.appendChild(no2Value);
+		td7.appendChild(so2Value);
+		td8.appendChild(o3Value);
+
+		tr.append(td1);
+		tr.append(td2);
+		tr.append(td3);
+		tr.append(td4);
+		tr.append(td5);
+		tr.append(td6);
+		tr.append(td7);
+		tr.append(td8);
+// 자식을 하나씩 하고 
+
+
+		tbody.appendChild(tr);
+		
+	}
+
+
+	// tbody.innerHTML = tr;
+	// tbody.innerHTML = element;
 }
+
 
 /**
  * totalCount : 전체 개수
