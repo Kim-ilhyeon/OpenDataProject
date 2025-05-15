@@ -1,15 +1,14 @@
 package com.kh.opendata.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.opendata.model.dto.AirResponse;
 import com.kh.opendata.model.vo.AirPollution;
-import com.kh.opendata.model.vo.AirVO;
 import com.kh.opendata.service.APIService;
 
 // @RestController => Controller + @ResponseBody
@@ -41,5 +40,17 @@ public class APIController {
 		return airPollution;
 		
 	}
+	
+	// [GET] /airPollution/v2?location=지역정보&currPage=페이지 번호
+	// @return AirResponse { 대기오염 정보, 한 페이지 결과 수, 페이지 번호, 전체결과 수 }
+	@GetMapping("airPollution/v2")
+	@ResponseBody
+	public AirResponse getAirPollutionV2(@RequestParam(value="location", defaultValue="서울") String sidoName, @RequestParam(value="currPage", defaultValue="1") int pageNo) throws IOException {
+		AirResponse airResponse = apiService.getAirPollutionV2(sidoName, pageNo);
+		
+		return airResponse;
+	}
+	
+	
 	
 }

@@ -1,6 +1,6 @@
 package com.kh.opendata.model.vo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AirPollution {
 
-	private ArrayList<AirVO> list;
+	private List<AirVO> list;
 	private int pageNo;				// 현재 페이지 번호
 	private int totalCount;			// 전체 결과 수
 	private int numOfRows;			// 한 페이지 결과 수
